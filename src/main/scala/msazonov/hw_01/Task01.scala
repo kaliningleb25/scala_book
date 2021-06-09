@@ -12,14 +12,14 @@ object Task01{
         //2. In the Scala REPL, compute the square root of 3, and then square that value. By how much does the result differ
         // from 3? (Hint: The res variables are your friend.)
 
-        var res: Double = math.sqrt(3)
-        var res2 = math.pow(res, 2)
-        println("Sqrt = " + res + ", Square = " + res2)
+        math.sqrt(3)
+        math.pow(res, 2)
+
         //Sqrt = 1.7320508075688772, Square = 2.9999999999999996
 
         //3. Are the res variables val or var?
 
-        // var, так как val это константы
+        // They are val
 
         // 4. Scala lets you multiply a string with a number—try out "crazy" * 3 in the REPL. What does this operation do?
         // Where can you find it in Scaladoc?
@@ -35,7 +35,7 @@ object Task01{
 
         //6. Using BigInt, compute 2^1024.
 
-        var task6 = BigInt(2) pow 1024
+        val task6 = BigInt(2) pow 1024
         println(task6)
 
         //7. What do you need to import so that you can get a random prime as probablePrime(100, Random), without any
@@ -48,12 +48,12 @@ object Task01{
         // yielding a string such as "qsnvbevtomcj38o06kul". Poke around Scaladoc to find a way of doing this in Scala.
 
         // https://www.scala-lang.org/api/current/scala/math/BigInt.html метод toString(radix: Int): String
-        var task8 = probablePrime(100, Random).toString(36)
+        val task8 = probablePrime(100, Random).toString(36)
         println(task8)
 
         //9. How do you get the first character of a string in Scala? The last character?
 
-        var task9 = "Maksim"
+        val task9 = "Maksim"
         println(task9.head)
         println(task9.last)
 
@@ -65,7 +65,7 @@ object Task01{
         //def takeRight(n: Int): String A string containing the last n chars of this string.
         //def dropRight(n: Int): String The rest of the string without its n last chars.
 
-        var task10 = "Maksim Sazonov"
+        val task10 = "Maksim Sazonov"
         println(task10.take(2)) // "Ma"
         println(task10.drop(2)) // "ksim Sazonov"
         println(task10.takeRight(2)) // "ov"
