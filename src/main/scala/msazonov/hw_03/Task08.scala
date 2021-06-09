@@ -12,6 +12,6 @@ object Task08 {
         var indexs = for(i <- a.indices if a(i) < 0) yield i
         indexs = indexs.drop(1)
         for (j <- indexs.reverse) a.remove(j)
-        println(a.mkString(","))
+        println(a)
     }
 }

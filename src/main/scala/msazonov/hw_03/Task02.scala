@@ -9,7 +9,7 @@ object Task02 {
         for (i <- 0 until a.length-1)
         {
             if (i % 2 == 1) {
-                var temp = a(i)
+                val temp = a(i)
                 a(i) = a(i - 1)
                 a(i - 1) = temp
             }

@@ -8,5 +8,6 @@ object Task11 {
     def main(args: Array[String]): Unit = {
         val flavors = SystemFlavorMap.getDefaultFlavorMap().asInstanceOf[SystemFlavorMap]
 
+        flavors.getNativesForFlavor(DataFlavor.imageFlavor).toArray.toBuffer
     }
 }

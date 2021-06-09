@@ -9,20 +9,17 @@ import scala.collection.mutable.ArrayBuffer
 object Task04 {
     def main(args: Array[String]): Unit = {
         val a = Array[Int](-1, 0, -2, 0, 3, 4, -5)
-        val pos, zero, neg = ArrayBuffer[Int]()
+        val pos, negzer = ArrayBuffer[Int]()
         for (i <- a.indices){
             if (a(i) > 0)
                 pos += i
-            else if (a(i) < 0)
-                neg += i
             else
-                zero += i
+                negzer += i
         }
         val result = ArrayBuffer[Int]()
         result ++= (for(i <- pos) yield a(i))
-        result ++= (for(i <- neg) yield a(i))
-        result ++= (for(i <- zero) yield a(i))
+        result ++= (for(i <- negzer) yield a(i))
 
-        print(result.mkString(","))
+        print(result)
     }
 }
