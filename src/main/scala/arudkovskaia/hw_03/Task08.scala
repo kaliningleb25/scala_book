@@ -11,6 +11,6 @@ object Task08 {
     val buffer = ArrayBuffer(1, 2, 3, -4, -9, 5)
     val firstNegativeIndex = buffer.indexWhere(_ < 0)
     buffer.indices.reverse.map(index => if (index != firstNegativeIndex) buffer.remove(index))
-    buffer
+    print(buffer)
   }
 }
