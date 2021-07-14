@@ -11,6 +11,6 @@ object Task09 {
   }
 
   def lteqgt(values: Array[Int], v: Int) = {
-    (values.count(_ < v), values.count(_ < v), values.count(_ == v))
+    (values.count(_ < v), values.count(_ > v), values.count(_ == v))
   }
 }
