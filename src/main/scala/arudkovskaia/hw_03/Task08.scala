@@ -9,8 +9,8 @@ import scala.collection.mutable.ArrayBuffer
 object Task08 {
   def main(args: Array[String]): Unit = {
     val buffer = ArrayBuffer(1, 2, 3, -4, -9, 5)
-    val firstNegativeIndex = buffer.indexWhere(_ < 0)
-    buffer.indices.reverse.map(index => if (index != firstNegativeIndex) buffer.remove(index))
+    val negativeIndices = buffer.indices.filter(buffer(_) < 0)
+    negativeIndices.drop(1).reverse.foreach(index => buffer.remove(index))
     print(buffer)
   }
 }

@@ -12,6 +12,6 @@ object Task01 {
 
   def generateArray(n: Int) = {
     val a = new Array[Int](n)
-    a.map(_ => Random.between(1, n))
+    a.map(_ => Random.between(0, n))
   }
 }
