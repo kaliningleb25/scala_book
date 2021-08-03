@@ -8,7 +8,7 @@ object Task01 {
         // 1.The signum of a number is 1 if the number is positive, –1 if it is negative, and 0 if it is zero.
         // Write a function that computes this value.
 
-        def signum(a:Int) = if (a > 0) 1 else if (a < 0) -1 else 0
+        def signum(a: Int) = if (a > 0) 1 else if (a < 0) -1 else 0
         val a = 0
         println(signum(a))
 
@@ -19,7 +19,10 @@ object Task01 {
         //3. Come up with one situation where the assignment x = y = 1 is valid in Scala.
         // (Hint: Pick a suitable type for x.)
 
-        val x, y:Int = 1
+        var x = {}
+        var y = 0
+        x = y = 1
+
         println("x = " + x + ", y = " + y)
 
         // 4. Write a Scala equivalent for the Java loop Click here to view code image
@@ -29,7 +32,7 @@ object Task01 {
 
         // 5. Write a procedure countdown(n: Int) that prints the numbers from n to 0.
 
-        def countdown(n:Int):Unit = {
+        def countdown(n: Int): Unit = {
             for (n <- n to 0 by -1) println(n)
         }
         countdown(5)
@@ -37,7 +40,7 @@ object Task01 {
         // 6. Write a for loop for computing the product of the Unicode codes of all letters in a string. For example,
         // the product of the characters in "Hello" is 9415087488L.
 
-        var product:Long = 1
+        var product: Long = 1
         for(ch <- "Hello") {
             product *= ch
         }
@@ -49,8 +52,8 @@ object Task01 {
 
         // 8. Write a function product(s : String) that computes the product, as described in the preceding exercises.
 
-        def productFunc(s:String):Long = {
-            var prod:Long = 1
+        def productFunc(s: String): Long = {
+            var prod: Long = 1
             for(ch <- s) prod *= ch
             prod
         }
@@ -58,8 +61,8 @@ object Task01 {
 
         // 9. Make the function of the preceding exercise a recursive function.
 
-        def productFuncRec(s:String):Long = {
-            var prod:Long = s.head.toLong
+        def productFuncRec(s: String): Long = {
+            var prod: Long = s.head.toLong
             if (s.tail.length > 0)
                 prod *= productFuncRec(s.tail)
             prod
@@ -72,7 +75,7 @@ object Task01 {
         // • x0 = 1.
         // •xn =1/x–nifnisnegative. Don’t use a return statement.
 
-        def task10(x:Double, n:Int):Double = {
+        def task10(x: Double, n: Int): Double = {
             if ((n % 2 == 0) && (n > 0)) {
                 task10(x, n/2) * task10(x, n/2)
             } else if ((n % 2 != 0) && (n > 0)){
@@ -80,7 +83,7 @@ object Task01 {
             } else if (n == 0){
                 1
             } else {
-                1 / (x-n)
+                1 / task10(x, -n)
             }
         }
 
