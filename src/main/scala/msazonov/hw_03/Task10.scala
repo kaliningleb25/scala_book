@@ -6,7 +6,7 @@ package msazonov.hw_03
  */
 object Task10 {
     def main(args: Array[String]): Unit = {
-        var a = java.util.TimeZone.getAvailableIDs().filter(_.startsWith("America/")).map(_.stripPrefix("America/")).mkString("\n")
+        var a = java.util.TimeZone.getAvailableIDs().filter(_.startsWith("America/")).map(_.stripPrefix("America/")).sorted.mkString("\n")
         print(a)
     }
 }
