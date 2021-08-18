@@ -1,110 +1,101 @@
+
 // task 01
-/*
-The signum of a number is 1 if the number is positive, –1 if it is negative, and 0 if it is zero.Write a function that computes this value.
-*/
+//Write a code snippet that sets a to an array of n random integers
+// between 0 (inclusive) and n(exclusive).
 
-def signum(x: Int) = if (x > 0) 1 else if (x == 0) 0 else -1
-signum(1)
-signum(-1)
-signum(0)
-
+val a = new Array[Int](10)
+for(i <- a.indices) {
+  a(i) = i
+}
+a
 
 // task 02
-/*
-What is the value of an empty block expression {}? What is its type?
-*/
-val test = {}
-// val test: Unit = ()
+// Write a loop that swaps adjacent elements of an array of integers.
+// For example, Array(1,2, 3, 4, 5) becomes Array(2, 1, 4, 3, 5).
+val a = Array[Int](1,2,3,4,5)
+for (i <- 0 until a.length - 1 by 2) {
+  val temp = a(i)
+  a(i) = a(i + 1)
+  a(i + 1) = temp
+}
+a
 
 // task 03
-//Come up with one situation where the assignment
-//x = y = 1 is valid in Scala. (Hint: Pick asuitable type for x.)
+//Repeat the preceding assignment, but produce a new array with the swapped values. Usefor/yield.
 
-var y = 1
-var x = y = 1
-
+val a = Array[Int](1,2,3,4,5)
+for (i <- a.indices)
+  yield
+    if (i % 2 == 1) a(i - 1)
+  else {
+    if (i == a.length - 1)
+      a(i)
+    else a(i + 1)
+  }
 
 // task 04
-//Write a Scala equivalent for the Java loop
-//for (int i = 10; i >= 0; i--) System.out.println(i);
+// Given an array of integers, produce a new array that contains all positive values of the originalarray,
+// in their original order, followed by all values that are zero or negative, in their originalorder.
+import scala.collection.mutable.ArrayBuffer
 
-// Способ № 1
-import scala.language.postfixOps
+val a = Array[Int](1,-1,2,-2,3,-3,4,-4,5,-5, 0)
+val positive, negative = new ArrayBuffer[Int]
 
-for (i <- 0 to 10 reverse) {
-  println(i)
+for (num <- a) {
+  if (num > 0) {
+    positive += num
+  }
+  else negative += num
+
 }
-
-// Способ № 2
-
-for (i <- 10 to 0 by -1) {
-  println(i)
-}
-
-// Способ № 3
-
-for (i <- 10 to (0, -1)){
-  println(i)
-}
+val sort_array = new ArrayBuffer[Int]
+sort_array ++= positive ++= negative
 
 // task 05
-//Write a procedure countdown(n: Int) that prints the numbers from n to 0.
-
-// Idea не дает обойтись без Unit
-def countdown(n: Int) : Unit= {
-  for (i <- n to 0 by -1) {
-    println(i)
-  }
-}
-countdown(10)
+//How do you compute the average of an Array[Double]?
+val double_array = Array[Double](1.0, 2.0, 3.0, 4.0, 5.0)
+val medium_value = double_array.sum / double_array.length
 
 // task 06
-// Write a for loop for computing the product of the Unicode codes of all letters in a string.
-// For example, the product of the characters in "Hello" is 9415087488L.
+//How do you rearrange the elements of an Array[Int] so that they appear in reverse sortedorder?
+// How do you do the same with an ArrayBuffer[Int]?
 
-var string = "Hello"
-var result = 1 : Long
-// Если оставить Int, результат будет другой - 825152896
-for (char <- string) {
-  result *= char // Убрал .toInt
-}
-println(result)
+val a = Array[Int] (2, 1, 4, 3, 5)
+a.sortWith(_ > _)
+// from task 04
+sort_array.sortWith(_ > _)
 
 // task 07
-//  Solve the preceding exercise without writing a loop. (Hint: Look at the StringOpsScaladoc.)
-
-var string7 = "Hello"
-string7.getBytes.map(x => x.toLong).product
+//Write a code snippet that produces all values from an array with duplicates removed.
+// (Hint:Look at Scaladoc.)
+val a = Array[Int] (1,1,2,2,3,3,4,4,5,5)
+a.distinct
 
 // task 08
-// Write a function product(s : String)
-// that computes the product, as described in the preceding exercises.
 
-def product(s: String): Long = {
-  var result8 = 1: Long
-  if (s.isEmpty) 1
-  else {
-    for (char <- s) {
-      result8 *= char
-    }
-    result8
-  }
-}
-product(string7)
+import scala.collection.mutable.ArrayBuffer
+val ar = ArrayBuffer[Int](2, -9, 9, 0, -1, -4, -6, 9)
+var indexs = for(i <- ar.indices if ar(i) < 0) yield i
+indexs = indexs.drop(1)
+for (j <- indexs.reverse) ar.remove(j)
+println(ar)
 
-// task 09
-// Make the function of the preceding exercise a recursive function.
 
-def product_recursion(s: String):Long ={
-  if (s.isEmpty) 1
-  else
-    s.head * product_recursion(s.tail)
-}
-product_recursion(string7)
 
 // task 10
-
+// Make a collection of all time zones returned by java.util.TimeZone.getAvailableIDs
+// that are in America. Strip off the "America/" prefix and sort the result.
+val tz = java.util.TimeZone.getAvailableIDs().filter(_.startsWith("America/")).map( (s) => s.stripPrefix("America/"))
 
 // task 11
+// Import java.awt.datatransfer._ and make an object of type SystemFlavorMap with
+// the call
+// val flavors = SystemFlavorMap.getDefaultFlavorMap().asInstanceOf[SystemFlavorMap]
+// Then call the getNativesForFlavor method with parameter DataFlavor.imageFlavor
+// and get the return value as a Scala buffer. (Why this obscure class? It's hard
+// to find uses of java.util.List in the standard Java library.)
 
+import java.awt.datatransfer._
 
+val flavors = SystemFlavorMap.getDefaultFlavorMap.asInstanceOf[SystemFlavorMap]
+val nativesForFlavors = flavors.getNativesForFlavors(Array(DataFlavor.imageFlavor))
