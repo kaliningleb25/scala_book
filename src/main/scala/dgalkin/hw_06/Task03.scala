@@ -1,0 +1,1 @@
+class Origin extends java.awt.Point {}
